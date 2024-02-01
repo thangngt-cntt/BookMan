@@ -22,4 +22,15 @@ public class BookView {
             WriteLine($"[{book.Id}] {book.Title} by {book.Authors}");
         }
     }
+
+    public static void Create() {
+        WriteLine("Enter information for the new book");
+        Write("Id: "); var id = ReadLine();
+        Write("Title: "); var title = ReadLine();
+        Write("Authors: "); var authors = ReadLine();
+        WriteLine("Adding new book ...");
+        Router.Instance.Invoke($"addnew ? id={id}&title={title}&authors={authors}");
+        WriteLine("Done!");
+    }
+
 }

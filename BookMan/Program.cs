@@ -6,6 +6,8 @@ internal class Program {
         BookController controller = new();
         Router.Instance.Register("list", p => controller.List());
         Router.Instance.Register("single", p => controller.Single(p));
+        Router.Instance.Register("add", p => controller.AddForm());
+        Router.Instance.Register("addnew", p => controller.AddNew(p));
         while (true) {
             Write("# ");
             var request = ReadLine();
