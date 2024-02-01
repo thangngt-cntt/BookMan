@@ -4,10 +4,14 @@ using static System.Console;
 internal class Program {
     static void Main(string[] args) { // entry point
         BookController controller = new();
+
         Router.Instance.Register("list", p => controller.List());
         Router.Instance.Register("single", p => controller.Single(p));
-        Router.Instance.Register("add", p => controller.AddForm());
-        Router.Instance.Register("addnew", p => controller.AddNew(p));
+        Router.Instance.Register("create", p => controller.CreateForm());
+        Router.Instance.Register("createnew", p => controller.CreateNew(p));
+        Router.Instance.Register("delete", p => controller.DeleteForm());
+        Router.Instance.Register("deleteitem", p => controller.DeleteItem(p));
+
         while (true) {
             Write("# ");
             var request = ReadLine();

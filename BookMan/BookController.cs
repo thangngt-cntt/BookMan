@@ -26,11 +26,11 @@ public class BookController : ControllerBase {
         Render(view, model);
     }
 
-    public void AddForm() {
-        Render(BookView.Create);
+    public void CreateForm() {
+        Render(BookView.CreateForm);
     }
 
-    public void AddNew(string p) {
+    public void CreateNew(string p) {
         var param = p.ToParams();
         var id = param["id"].To<int>();
         var title = param["title"];
@@ -39,5 +39,17 @@ public class BookController : ControllerBase {
         var model = _repository.Retrieve(id);
         var view = BookView.Single;
         Render(view, model);
+    }
+
+    public void DeleteForm() {
+        Render(BookView.DeleteForm);
+    }
+
+    public void DeleteItem(string p) {
+        var id = p.ToParams()["id"].To<int>();
+        if (_repository.Delete(id))
+            Render(BookView.DeleteResult, "Deleted!");
+        else
+            Render(BookView.DeleteResult, "Deletion failed!");
     }
 }

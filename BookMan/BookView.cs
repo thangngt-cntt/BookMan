@@ -23,14 +23,24 @@ public class BookView {
         }
     }
 
-    public static void Create() {
+    public static void CreateForm() {
         WriteLine("Enter information for the new book");
         Write("Id: "); var id = ReadLine();
         Write("Title: "); var title = ReadLine();
         Write("Authors: "); var authors = ReadLine();
         WriteLine("Adding new book ...");
-        Router.Instance.Invoke($"addnew ? id={id}&title={title}&authors={authors}");
+        Router.Instance.Invoke($"createnew ? id={id}&title={title}&authors={authors}");
         WriteLine("Done!");
     }
 
+    public static void DeleteForm() {
+        Write("Id: "); var id = ReadLine();
+        WriteLine($"Press enter to delete the book with id={id}");
+        ReadLine();
+        Router.Instance.Invoke($"deleteitem ? id = {id}");
+    }
+
+    public static void DeleteResult(string message) {
+        WriteLine(message);
+    }
 }
